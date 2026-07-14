@@ -1,9 +1,516 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Моя страница</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>NONG-трек · Mama (MAXIMGRECHKA) | Geometry Dash</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0c0e;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1.5rem;
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+
+    .tutorial-card {
+      max-width: 700px;
+      width: 100%;
+      background: #16171b;
+      border: 1px solid #2a2c33;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(255, 140, 0, 0.1) inset;
+      padding: 2.2rem 2rem;
+      backdrop-filter: blur(2px);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #ff9f0a, #ff6b00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: #9a9da8;
+      margin-bottom: 1.8rem;
+      font-size: 1rem;
+      border-left: 4px solid #ff8c00;
+      padding-left: 1rem;
+      font-weight: 500;
+    }
+
+    .level-info {
+      background: #1a1c22;
+      border: 1px solid #2d3039;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+      justify-content: space-between;
+    }
+    .level-name {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .level-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .level-id-box {
+      background: #0d0e12;
+      padding: 0.4rem 0.9rem;
+      border-radius: 0.8rem;
+      font-family: monospace;
+      font-size: 1rem;
+      color: #ffb870;
+      border: 1px solid #3a3d47;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .copy-id-btn {
+      background: none;
+      border: 1px solid #ff8c00;
+      color: #ffb443;
+      border-radius: 0.5rem;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+      background: #2a2d35;
+    }
+    .copy-id-btn:hover {
+      background: #ff8c00;
+      color: #0b0c0e;
+    }
+    .creator {
+      color: #b0b3bf;
+      font-weight: 500;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .step {
+      background: #1e1f26;
+      border-radius: 1.8rem;
+      padding: 1.5rem 1.8rem;
+      border: 1px solid #2d2f38;
+      transition: border 0.2s, box-shadow 0.2s;
+      position: relative;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+    }
+    .step:hover {
+      border-color: #ff8c00;
+      box-shadow: 0 10px 20px rgba(255, 140, 0, 0.08);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+    .step-emoji {
+      font-size: 1.9rem;
+      background: #2a2c34;
+      width: 2.8rem;
+      height: 2.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1rem;
+    }
+    .step-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+    .step-desc {
+      color: #b0b3bf;
+      margin-left: 0.4rem;
+      font-size: 0.98rem;
+      padding-left: 0.2rem;
+    }
+
+    .highlight-btn {
+      background: #2a2d35;
+      color: #ffb443;
+      font-weight: 700;
+      padding: 0.15rem 0.7rem;
+      border-radius: 0.6rem;
+      font-size: 0.9rem;
+      border: 1px solid #4a3f2c;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .url-box {
+      background: #0d0e12;
+      border: 1px solid #3a3d47;
+      border-radius: 1rem;
+      padding: 0.9rem 1.2rem;
+      margin: 0.9rem 0 0.2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .url-text {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      word-break: break-all;
+      color: #ffb870;
+      flex: 1;
+    }
+    .copy-btn {
+      background: #2a2d35;
+      border: 1px solid #ff8c00;
+      color: #ffb443;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+      white-space: nowrap;
+      background: linear-gradient(to bottom, #2f323a, #1f2128);
+    }
+    .copy-btn:hover {
+      background: #ff8c00;
+      color: #0b0c0e;
+      border-color: #ffaa33;
+    }
+    .copy-btn:active {
+      transform: scale(0.96);
+    }
+    .copied-tooltip {
+      font-size: 0.75rem;
+      color: #7ed957;
+      margin-left: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .copy-hint {
+      font-size: 0.75rem;
+      color: #7e8290;
+      margin-top: 0.4rem;
+      margin-left: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .note {
+      background: #1e2027;
+      border-radius: 1.2rem;
+      padding: 1rem 1.4rem;
+      margin-top: 1.8rem;
+      border-left: 4px solid #ff8c00;
+      color: #cbd0db;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #2d3039;
+      margin: 1.8rem 0 1rem 0;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b6f7c;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .tutorial-card {
+        padding: 1.5rem 1.2rem;
+      }
+      .step {
+        padding: 1.2rem 1.2rem;
+      }
+      .url-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .copy-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .level-info {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Привет, мир! Это мой сайт на GitHub.</h1>
+  <div class="tutorial-card">
+    <h1>
+      🎵 <span>NONG-трек</span> для Mama
+    </h1>
+    <div class="subtitle">
+      Geometry Dash · установка через <strong>Jukebox</strong>
+    </div>
+
+    <!-- Информация об уровне -->
+    <div class="level-info">
+      <div class="level-name">
+        🎮 Mama
+      </div>
+      <div class="level-detail">
+        <div class="level-id-box">
+          <span>ID:</span> <strong id="levelId">144771024</strong>
+          <button class="copy-id-btn" id="copyIdButton">📋 Копировать</button>
+          <span id="idCopyFeedback" class="copied-tooltip" style="display: none;">✔ Скопировано</span>
+        </div>
+        <div class="creator">
+          👤 <strong>MAXIMGRECHKA</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <!-- Шаг 1 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">📋</div>
+          <div class="step-title">1. Открой Jukebox</div>
+        </div>
+        <div class="step-desc">
+          Запусти Geometry Dash и перейди в меню <span class="highlight-btn">Jukebox</span> (музыкальный проигрыватель). Обычно он находится в главном меню или в редакторе уровней.
+        </div>
+      </div>
+
+      <!-- Шаг 2 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">➕</div>
+          <div class="step-title">2. Нажми на кнопку «+»</div>
+        </div>
+        <div class="step-desc">
+          В Jukebox найди и нажми кнопку <span class="highlight-btn">+</span> (плюс), чтобы добавить новый трек.
+        </div>
+      </div>
+
+      <!-- Шаг 3 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">🌐</div>
+          <div class="step-title">3. Выбери «Hosted»</div>
+        </div>
+        <div class="step-desc">
+          После нажатия появится окно с вариантами. Выбери <span class="highlight-btn">Hosted</span> — этот режим позволяет загружать треки по прямой ссылке.
+        </div>
+      </div>
+
+      <!-- Шаг 4 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">✏️</div>
+          <div class="step-title">4. Введи метаданные трека</div>
+        </div>
+        <div class="step-desc">
+          Заполни поля:<br>
+          • <span class="highlight-btn">Title</span> (название трека): <strong>mamaboosted</strong><br>
+          • <span class="highlight-btn">Artist</span> (автор/артист): <strong>maksosmax228</strong><br>
+          <span style="color:#9a9da8; font-size:0.9rem;">(или укажи так, как тебе удобнее — это просто подписи)</span>
+        </div>
+      </div>
+
+      <!-- Шаг 5 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">🔗</div>
+          <div class="step-title">5. Вставь прямую ссылку</div>
+        </div>
+        <div class="step-desc">
+          В самое последнее поле ввода (обычно подписано как <span class="highlight-btn">URL</span> или <span class="highlight-btn">Direct Link</span>) вставь эту ссылку:
+          <div class="url-box" id="urlContainer">
+            <span class="url-text" id="targetUrl">https://github.com/maksosmax228-droid/GD-nongs-for-my-levels/raw/refs/heads/main/mamaboosted.mp3</span>
+            <button class="copy-btn" id="copyButton">
+              📋 Копировать
+            </button>
+            <span id="copyFeedback" class="copied-tooltip" style="display: none;">✔ Скопировано!</span>
+          </div>
+          <div class="copy-hint">
+            💡 Нажми кнопку «Копировать», чтобы ссылка оказалась в буфере обмена, затем вставь в поле.
+          </div>
+        </div>
+      </div>
+
+      <!-- Шаг 6 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">✅</div>
+          <div class="step-title">6. Подтверди добавление</div>
+        </div>
+        <div class="step-desc">
+          Нажми на кнопку подтверждения (обычно <span class="highlight-btn">OK</span> / <span class="highlight-btn">Confirm</span> / <span class="highlight-btn">✔️</span>), чтобы завершить ввод данных.
+        </div>
+      </div>
+
+      <!-- Шаг 7 -->
+      <div class="step">
+        <div class="step-header">
+          <div class="step-emoji">⬇️</div>
+          <div class="step-title">7. Скачай трек и выбери для уровня</div>
+        </div>
+        <div class="step-desc">
+          После добавления ты увидишь новый трек в списке Jukebox. Нажми на кнопку <span class="highlight-btn">скачивания</span> (обычно значок ↓ или облака). Дождись окончания загрузки. <br>
+          <strong>Теперь ты можешь выбрать этот трек для своего уровня!</strong> 🎉
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <span style="font-size:1.3rem;">⚠️</span>
+      <span><strong>Важно:</strong> ссылка ведёт на файл <code>mamaboosted.mp3</code> из моего репозитория. Если трек не скачивается, проверь интернет-соединение и правильность вставленной ссылки. Поле должно быть именно прямым URL.</span>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+      🎮 Уровень Mama от MAXIMGRECHKA · NONG туториал
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Копирование URL трека
+      const copyBtn = document.getElementById('copyButton');
+      const targetUrlElement = document.getElementById('targetUrl');
+      const feedback = document.getElementById('copyFeedback');
+
+      if (copyBtn && targetUrlElement) {
+        const urlToCopy = targetUrlElement.textContent.trim();
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(urlToCopy);
+            feedback.style.display = 'inline-flex';
+            copyBtn.textContent = '✅ Готово';
+            copyBtn.disabled = true;
+            setTimeout(() => {
+              feedback.style.display = 'none';
+              copyBtn.textContent = '📋 Копировать';
+              copyBtn.disabled = false;
+            }, 2000);
+          } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = urlToCopy;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+              document.execCommand('copy');
+              feedback.style.display = 'inline-flex';
+              copyBtn.textContent = '✅ Готово';
+              copyBtn.disabled = true;
+              setTimeout(() => {
+                feedback.style.display = 'none';
+                copyBtn.textContent = '📋 Копировать';
+                copyBtn.disabled = false;
+              }, 2000);
+            } catch (e) {
+              alert('Не удалось скопировать ссылку. Скопируйте её вручную.');
+            }
+            document.body.removeChild(textArea);
+          }
+        });
+      }
+
+      // Копирование ID уровня
+      const copyIdBtn = document.getElementById('copyIdButton');
+      const levelIdEl = document.getElementById('levelId');
+      const idFeedback = document.getElementById('idCopyFeedback');
+
+      if (copyIdBtn && levelIdEl) {
+        const levelId = levelIdEl.textContent.trim();
+        copyIdBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(levelId);
+            idFeedback.style.display = 'inline-flex';
+            copyIdBtn.textContent = '✅';
+            copyIdBtn.disabled = true;
+            setTimeout(() => {
+              idFeedback.style.display = 'none';
+              copyIdBtn.textContent = '📋 Копировать';
+              copyIdBtn.disabled = false;
+            }, 2000);
+          } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = levelId;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+              document.execCommand('copy');
+              idFeedback.style.display = 'inline-flex';
+              copyIdBtn.textContent = '✅';
+              copyIdBtn.disabled = true;
+              setTimeout(() => {
+                idFeedback.style.display = 'none';
+                copyIdBtn.textContent = '📋 Копировать';
+                copyIdBtn.disabled = false;
+              }, 2000);
+            } catch (e) {
+              alert('Не удалось скопировать ID. Скопируйте вручную: ' + levelId);
+            }
+            document.body.removeChild(textArea);
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
